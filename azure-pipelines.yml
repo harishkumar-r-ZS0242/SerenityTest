@@ -15,6 +15,7 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '$(System.DefaultWorkingDirectory)/target/site/serenity/'
     javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.11'
     mavenVersionOption: 'Default'
     mavenAuthenticateFeed: false
     effectivePomSkip: false

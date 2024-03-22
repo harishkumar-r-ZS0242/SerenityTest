@@ -9,6 +9,7 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+
 steps:
 - task: Maven@3
   inputs:
@@ -30,3 +31,13 @@ steps:
     targetPath: '$(System.DefaultWorkingDirectory)/target/site/serenity/serenity-summary.html'
     publishLocation: 'pipeline'
     artifact: 'Test'
+- task: Maven@4
+  inputs:
+    mavenPomFile: 'pom.xml'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false

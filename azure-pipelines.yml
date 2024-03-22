@@ -16,12 +16,10 @@ steps:
     jdkVersionOption: '1.17'
     jdkArchitectureOption: 'x64'
     mavenVersionOption: 'Default'
-    goals: 'package' 
     mavenAuthenticateFeed: false
-    effectivePomSkip: false
-    sonarQubeRunAnalysis: false
     publishJUnitResults: true
-    testResultsFiles: '$(System.DefaultWorkingDirectory)/target/site/serenity'
+    testResultsFiles: '**/index.html'
+    goals: clean verify
 - task: PowerShell@2
   inputs:
     targetType: 'inline'

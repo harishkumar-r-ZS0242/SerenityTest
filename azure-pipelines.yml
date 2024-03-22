@@ -8,29 +8,7 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
-
-
 steps:
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'pom.xml'
-    options: -D"chrome.headless=0" -Denvironment=TST
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.17'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    testResultsFiles: '**/index.html'
-    goals: clean verify
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: 'Write-Host "##vso[task.uploadfile]$(System.DefaultWorkingDirectory)/pom.xml"'
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(System.DefaultWorkingDirectory)/target/site/serenity/serenity-summary.html'
-    publishLocation: 'pipeline'
-    artifact: 'Test'
 - task: Maven@4
   inputs:
     mavenPomFile: 'pom.xml'
@@ -41,3 +19,12 @@ steps:
     mavenAuthenticateFeed: false
     effectivePomSkip: false
     sonarQubeRunAnalysis: false
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: 'Write-Host "##vso[task.uploadfile]$(System.DefaultWorkingDirectory)/pom.xml"'
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(System.DefaultWorkingDirectory)/target/site/serenity/serenity-summary.html'
+    publishLocation: 'pipeline'
+    artifact: 'Test'

@@ -15,6 +15,5 @@ public class LoginSteps extends ScenarioSteps{
 	@Step
 	public  void login() {
 		getDriver().get("https://www.toolsqa.com/selenium-training/");
-		getDriver().findElement(By.xpath("//a[contains(text(),'Home')]")).click();
 	}
 }

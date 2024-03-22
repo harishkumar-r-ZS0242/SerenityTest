@@ -28,6 +28,6 @@ steps:
     script: 'Write-Host "##vso[task.uploadfile]$(System.DefaultWorkingDirectory)/pom.xml"'
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(System.DefaultWorkingDirectory)/target/site/serenity/serenity-summary.html'
+    targetPath: '$(System.DefaultWorkingDirectory)/target/site/serenity/serenity-summary'
     publishLocation: 'pipeline'
     artifact: 'Test'

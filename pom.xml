@@ -44,11 +44,11 @@
 			<version>${serenity.version}</version>
 			<scope>test</scope>
 		</dependency>
-<dependency>
-    <groupId>com.sun.mail</groupId>
-    <artifactId>javax.mail</artifactId>
-    <version>1.6.2</version>
-</dependency>
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.2</version>
+		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -80,7 +80,7 @@
 						<webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
 					</systemPropertyVariables>
 					<parallel>classes</parallel>
-					  <threadCount>2</threadCount>
+					<threadCount>2</threadCount>
 					<forkCount>${parallel.tests}</forkCount>
 				</configuration>
 				<executions>
@@ -96,10 +96,10 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven.compiler.plugin.version}</version>
+				<version>3.12.1</version>
 				<configuration>
-					<source>${maven.compiler.source.version}</source>
-					<target>${maven.compiler.target.version}</target>
+					<source>17</source>
+					<target>17</target>
 				</configuration>
 			</plugin>
 
@@ -142,7 +142,7 @@
 					</execution>
 				</executions>
 				<configuration>
-				<classpathScope>test</classpathScope>
+					<classpathScope>test</classpathScope>
 					<mainClass>utility.EmailSender</mainClass>
 					<arguments>
 						<argument>argument1</argument>

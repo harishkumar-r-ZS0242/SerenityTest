@@ -24,4 +24,4 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: 'Write-Host "##vso[task.uploadfile]$(System.DefaultWorkingDirectory)\pom.xml"'
+    script: 'Write-Host "##vso[task.uploadfile]$(System.DefaultWorkingDirectory)/pom.xml"'

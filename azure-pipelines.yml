@@ -21,7 +21,7 @@ steps:
     effectivePomSkip: false
     sonarQubeRunAnalysis: false
     publishJUnitResults: true
-    testResultsFiles: '$(System.DefaultWorkingDirectory)/target/site/serenity/'
+    testResultsFiles: '$(System.DefaultWorkingDirectory)/target/site/serenity'
 - task: PowerShell@2
   inputs:
     targetType: 'inline'

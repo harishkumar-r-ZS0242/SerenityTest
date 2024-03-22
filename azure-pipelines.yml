@@ -25,3 +25,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: 'Write-Host "##vso[task.uploadfile]$(System.DefaultWorkingDirectory)/pom.xml"'
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)/pom.xml'
+    publishLocation: 'pipeline'

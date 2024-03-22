@@ -2,5 +2,5 @@ Feature: Login
 
  Scenario: Login with valid credentials
     
-    Given User is on Home page
- #srgsdfyt
+  Given Login to the Application
+  And Open the Application in chrome 

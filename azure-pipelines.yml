@@ -29,3 +29,4 @@ steps:
   inputs:
     targetPath: '$(System.DefaultWorkingDirectory)/target/site/serenity/serenity-summary.html'
     publishLocation: 'pipeline'
+    artifact: 'Test'

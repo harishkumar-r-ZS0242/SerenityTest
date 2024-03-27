@@ -13,7 +13,7 @@ steps:
   inputs:
     mavenPomFile: 'pom.xml'
     javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.11'
+    jdkVersionOption: '1.8'
     jdkArchitectureOption: 'x64'
     mavenVersionOption: 'Default'
     mavenAuthenticateFeed: false
@@ -26,6 +26,6 @@ steps:
     script: 'Write-Host "##vso[task.uploadfile]$(System.DefaultWorkingDirectory)/pom.xml"'
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(System.DefaultWorkingDirectory)/target/site/serenity/serenity-summary'
+    targetPath: '$(System.DefaultWorkingDirectory)/target/site/serenity/serenity-summary.html'
     publishLocation: 'pipeline'
     artifact: 'Test'

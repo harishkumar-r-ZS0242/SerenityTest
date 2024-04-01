@@ -28,4 +28,9 @@ steps:
   inputs:
     targetPath: '$(System.DefaultWorkingDirectory)/target/site/serenity/serenity-summary.html'
     publishLocation: 'pipeline'
-    artifact: 'Test'
+    artifact: 'Summary'
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(System.DefaultWorkingDirectory)/target/site/serenity/serenity-summary.html'
+    artifact: 'Report'
+    publishLocation: 'pipeline'

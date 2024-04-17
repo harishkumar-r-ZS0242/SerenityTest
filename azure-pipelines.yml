@@ -21,6 +21,7 @@ steps:
     testResultsFiles: '**/index.html'
     goals: clean verify
 - task: PowerShell@2
+  condition: always()
   inputs:
     targetType: 'inline'
     script: 'Write-Host "##vso[task.uploadfile]$(System.DefaultWorkingDirectory)/pom.xml"'
@@ -30,6 +31,7 @@ steps:
     publishLocation: 'pipeline'
     artifact: 'Summary'
 - task: PublishPipelineArtifact@1
+  condition: always()
   inputs:
     targetPath: '$(System.DefaultWorkingDirectory)/target/site'
     artifact: 'Report'

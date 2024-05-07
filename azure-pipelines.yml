@@ -56,6 +56,18 @@ steps:
           "summary" = "Test Automation Status"
           "title" = "Test Automation Status"
           "text" = $message
-      } | ConvertTo-Json
+          "potentialAction" = @(
+         @{
+            "@type" = "OpenUri"
+            "name" = "View Test Results"
+            "targets" = @(
+                @{
+                    "os" = "default"
+                    "uri" = "https://artprodcin1.artifacts.visualstudio.com/A2cc4d36d-dd44-4c77-893b-78431a87a926/2c7be8ec-2086-42af-8141-ef7017c6c86f/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2hhcmlzaGt1bWFyci9wcm9qZWN0SWQvMmM3YmU4ZWMtMjA4Ni00MmFmLTgxNDEtZWY3MDE3YzZjODZmL2J1aWxkSWQvNTMvYXJ0aWZhY3ROYW1lL1N1bW1hcnk1/content?format=file&subPath=%2Fserenity-summary.html"
+                 }
+              )
+            }
+         )
+       } | ConvertTo-Json
       
-      Invoke-RestMethod -Uri "https://netorg687836.webhook.office.com/webhookb2/79c3885e-dc10-4a47-87e3-fdbca374fc14@95d6ea62-1835-4b99-af66-819b95a80808/IncomingWebhook/00976fad75334de2b745409a68d5264d/0ca36e7e-aaaf-44cf-8a22-2b943671afd0%22" -Method Post -Body $body -ContentType 'application/json'
+       Invoke-RestMethod -Uri "https://netorg687836.webhook.office.com/webhookb2/79c3885e-dc10-4a47-87e3-fdbca374fc14@95d6ea62-1835-4b99-af66-819b95a80808/IncomingWebhook/00976fad75334de2b745409a68d5264d/0ca36e7e-aaaf-44cf-8a22-2b943671afd0" -Method Post -Body $body -ContentType 'application/json'

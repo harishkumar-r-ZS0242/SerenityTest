@@ -47,7 +47,7 @@ steps:
       $testFailed = $testResults -match '<testcase.*?result="Failed"'
       
       # Format message for Microsoft Teams
-      $message = "Test Automation Status:\nPassed: $testPassed\nFailed: $testFailed"
+      $message = "Test Automation Status:/nPassed: $testPassed/nFailed: $testFailed"
       
       # Send notification to Microsoft Teams using webhook
       $body = @{

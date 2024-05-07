@@ -63,7 +63,7 @@ steps:
             "targets" = @(
                 @{
                     "os" = "default"
-                    "uri" = "https://artprodcin1.artifacts.visualstudio.com/A2cc4d36d-dd44-4c77-893b-78431a87a926/2c7be8ec-2086-42af-8141-ef7017c6c86f/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2hhcmlzaGt1bWFyci9wcm9qZWN0SWQvMmM3YmU4ZWMtMjA4Ni00MmFmLTgxNDEtZWY3MDE3YzZjODZmL2J1aWxkSWQvNTMvYXJ0aWZhY3ROYW1lL1N1bW1hcnk1/content?format=file&subPath=%2Fserenity-summary.html"
+                    "uri" = "https://dev.azure.com/harishkumarr/SerenityTest/_build/results?buildId=54&view=artifacts&pathAsName=false&type=publishedArtifacts/serenity-summary.html"
                  }
               )
             }

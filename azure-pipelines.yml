@@ -42,7 +42,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      $testResults = Get-Content "path/to/test/results.xml"
+      $testResults = Get-Content "$(System.DefaultWorkingDirectory)/target/site/serenity/serenity-summary.html"
       $testPassed = $testResults -match '<testcase.*?result="Passed"'
       $testFailed = $testResults -match '<testcase.*?result="Failed"'
       

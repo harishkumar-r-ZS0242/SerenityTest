@@ -42,14 +42,13 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
+     powershellCopy code#
       $testResults = Get-Content "$(System.DefaultWorkingDirectory)/target/site/serenity/serenity-summary.html"
       $testPassed = $testResults -match '<testcase.*?result="Passed"'
       $testFailed = $testResults -match '<testcase.*?result="Failed"'
       
       # Format message for Microsoft Teams
       $message = "Test Automation Status:`nPassed: $testPassed`nFailed: $testFailed"
-      
-      # Generate JSON payload for Microsoft Teams message card with button
       $body = '@{
           "@type" = "MessageCard"
           "@context" = "http://schema.org/extensions"

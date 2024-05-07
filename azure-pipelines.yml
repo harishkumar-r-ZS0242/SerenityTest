@@ -7,6 +7,16 @@
 variables:
 - name: BuildId
   value: $(Build.BuildId)
+
+- name: View
+  value: "artifacts"
+
+- name: PathAsName
+  value: "false"
+
+- name: ArtifactType
+  value: "publishedArtifacts"  
+
 trigger:
 - master
 
@@ -54,7 +64,7 @@ steps:
                   "name" : "View Test Results",
                   "targets" : [{
                           "os" : "default",
-                          "uri" : "$(System.CollectionUri)/SerenityTest/_build/results?/buildId=$(BuildId)&view=artifacts&pathAsName=false&type=publishedArtifacts"
+                          "uri" : "$(System.CollectionUri)/SerenityTest/_build/results?buildId=$(Build.BuildId)&view=$(View)&pathAsName=$(PathAsName)&type=$(ArtifactType)"
                       }]
                   }]
 

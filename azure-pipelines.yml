@@ -61,7 +61,7 @@ steps:
                   "targets" = @(
                       @{
                           "os" = "default"
-                          "uri" = "$(System.CollectionUri)/target/site/serenity/serenity-summary.html"
+                          "uri" = "$(System.CollectionUri)/SerenityTest/_build/results?/buildId=64&view=artifacts&pathAsName=false&type=publishedArtifacts/target/site/serenity/serenity-summary.html"
                       }
                   )
               }

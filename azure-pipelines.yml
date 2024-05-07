@@ -41,7 +41,6 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      powershellCopy code# Parse test results and extract relevant information
       $testResults = Get-Content "$(System.DefaultWorkingDirectory)/target/site/serenity/serenity-summary.html"
       $testPassed = $testResults -match '<testcase.*?result="Passed"'
       $testFailed = $testResults -match '<testcase.*?result="Failed"'

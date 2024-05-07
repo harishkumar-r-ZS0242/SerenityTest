@@ -47,9 +47,9 @@ steps:
       $testFailed = $testResults -match '<testcase.*?result="Failed"'
       
       # Format message for Microsoft Teams
-      $message = "Test Automation Status:/nPassed: $testPassed/nFailed: $testFailed"
+      $message = "Test Automation Status:`nPassed: $testPassed`nFailed: $testFailed"
       
-      # Send notification to Microsoft Teams using webhook
+      # Generate JSON payload for Microsoft Teams message card with button
       $body = @{
           "@type" = "MessageCard"
           "@context" = "http://schema.org/extensions"
@@ -57,17 +57,21 @@ steps:
           "title" = "Test Automation Status"
           "text" = $message
           "potentialAction" = @(
-         @{
-            "@type" = "OpenUri"
-            "name" = "View Test Results"
-            "targets" = @(
-                @{
-                    "os" = "default"
-                    "uri" = "$(System.CollectionUri)/target/site/serenity/serenity-summary.html"
-                 }
-              )
-          }
-        )  
-       } | ConvertTo-Json
+              @{
+                  "@type" = "OpenUri"
+                  "name" = "View Test Results"
+                  "targets" = @(
+                      @{
+                          "os" = "default"
+                          "uri" = "$(System.CollectionUri)/target/site/serenity/serenity-summary.html"
+                      }
+                  )
+              }
+          )
+      } | ConvertTo-Json
       
-      Invoke-RestMethod -Uri "https://netorg687836.webhook.office.com/webhookb2/79c3885e-dc10-4a47-87e3-fdbca374fc14@95d6ea62-1835-4b99-af66-819b95a80808/IncomingWebhook/00976fad75334de2b745409a68d5264d/0ca36e7e-aaaf-44cf-8a22-2b943671afd0" -Method Post -Body $body -ContentType 'application/json'
+      $webhookUrl = "https://netorg687836.webhook.office.com/webhookb2/79c3885e-dc10-4a47-87e3-fdbca374fc14@95d6ea62-1835-4b99-af66-819b95a80808/IncomingWebhook/00976fad75334de2b745409a68d5264d/0ca36e7e-aaaf-44cf-8a22-2b943671afd0"
+      $headers = @{
+          "Content-Type" = "application/json"
+      }
+      Invoke-RestMethod -Uri $webhookUrl -Method Post -Headers $headers -Body $body

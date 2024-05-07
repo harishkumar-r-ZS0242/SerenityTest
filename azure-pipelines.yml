@@ -1,4 +1,5 @@
 # Maven
+
 # Build your Java project and run tests with Apache Maven.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
@@ -36,3 +37,25 @@ steps:
     targetPath: '$(System.DefaultWorkingDirectory)/target/site'
     artifact: 'Report'
     publishLocation: 'pipeline'
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      powershellCopy code# Parse test results and extract relevant information
+      $testResults = Get-Content "$(System.DefaultWorkingDirectory)/target/site/serenity/serenity-summary.html"
+      $testPassed = $testResults -match '<testcase.*?result="Passed"'
+      $testFailed = $testResults -match '<testcase.*?result="Failed"'
+      
+      # Format message for Microsoft Teams
+      $message = "Test Automation Status:\nPassed: $testPassed\nFailed: $testFailed"
+      
+      # Send notification to Microsoft Teams using webhook
+      $body = @{
+          "@type" = "MessageCard"
+          "@context" = "http://schema.org/extensions"
+          "summary" = "Test Automation Status"
+          "title" = "Test Automation Status"
+          "text" = $message
+      } | ConvertTo-Json
+      
+      Invoke-RestMethod -Uri "https://netorg687836.webhook.office.com/webhookb2/79c3885e-dc10-4a47-87e3-fdbca374fc14@95d6ea62-1835-4b99-af66-819b95a80808/IncomingWebhook/00976fad75334de2b745409a68d5264d/0ca36e7e-aaaf-44cf-8a22-2b943671afd0" -Method Post -Body $body -ContentType 'application/json'

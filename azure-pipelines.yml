@@ -4,7 +4,9 @@
 # Build your Java project and run tests with Apache Maven.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
-
+variables:
+- name: BuildId
+  value: $(Build.BuildId)
 trigger:
 - master
 
@@ -52,7 +54,7 @@ steps:
                   "name" : "View Test Results",
                   "targets" : [{
                           "os" : "default",
-                          "uri" : "$(System.CollectionUri)/SerenityTest/_build/results?/buildId=64&view=artifacts&pathAsName=false&type=publishedArtifacts"
+                          "uri" : "$(System.CollectionUri)/SerenityTest/_build/results?/buildId=$(BuildId)&view=artifacts&pathAsName=false&type=publishedArtifacts"
                       }]
                   }]
 

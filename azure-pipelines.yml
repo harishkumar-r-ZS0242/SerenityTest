@@ -122,42 +122,42 @@ steps:
           "@type" = "MessageCard"
           "@context" = "http://schema.org/extensions"
           "summary" = "Test Summary"
-          "title" = "Test Automation Status"
+          "title" = "CareHub Test Automation Pipeline Report"
           "sections" = @(
               @{
                   "activityTitle" = "Test Report Summary"
                   "activitySubtitle" = "Serenity Report Generated on $reportGenerated"
                   "facts" = @(
                       @{
-                          "name" = "Test Cases"
+                          "name" = "Test Cases :"
                           "value" = $testCases
                       },
                       @{
-                          "name" = "Passed"
+                          "name" = "Passed :"
                           "value" = $passed
                       },
                       @{
-                          "name" = "Failed"
+                          "name" = "Failed :"
                           "value" = $failed
                       },
                       @{
-                          "name" = "Failed with Errors"
+                          "name" = "Failed with Errors :"
                           "value" = $failedWithErrors
                       },
                       @{
-                          "name" = "Compromised"
+                          "name" = "Compromised :"
                           "value" = $compromised
                       },
                       @{
-                          "name" = "Pending"
+                          "name" = "Pending :"
                           "value" = $pending
                       },
                       @{
-                          "name" = "Ignored"
+                          "name" = "Ignored :"
                           "value" = $ignored
                       },
                       @{
-                          "name" = "Skipped"
+                          "name" = "Skipped :"
                           "value" = $skipped
                       }
                   )

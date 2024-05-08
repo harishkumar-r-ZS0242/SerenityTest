@@ -75,3 +75,82 @@ steps:
           "Content-Type" = "application/json"
       }
       Invoke-RestMethod -Uri $webhookUrl -Method Post -Headers $headers -Body $body
+  
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      name: Read Serenity Report
+          shell: pwsh
+          run: |
+           $fileContent = Get-Content "C:\Users\harishkumar.r\Desktop\summary.txt"
+      
+            # Initialize variables to store the data
+            $reportGenerated = ""
+            $testCases = 0
+            $passed = 0
+            $failed = 0
+            $failedWithErrors = 0
+            $compromised = 0
+            $pending = 0
+            $ignored = 0
+            $skipped = 0
+      
+            # Process each line in the file
+            foreach ($line in $fileContent) {
+                # Match the line that contains the report generation date
+                if ($line -match "^Serenity report generated (.+)$") {
+                    $reportGenerated = $Matches[1].Trim()
+                }
+      
+                # Match lines containing test case counts
+                if ($line -match "^Test Cases:\s+(\d+)$") {
+                    $testCases = [int]$Matches[1]
+                }
+      
+                # Match lines containing passed test cases count
+                if ($line -match "^Passed:\s+(\d+)$") {
+                    $passed = [int]$Matches[1]
+                }
+      
+                # Match lines containing failed test cases count
+                if ($line -match "^Failed:\s+(\d+)$") {
+                    $failed = [int]$Matches[1]
+                }
+      
+                # Match lines containing failed with errors count
+                if ($line -match "^Failed with errors:\s+(\d+)$") {
+                    $failedWithErrors = [int]$Matches[1]
+                }
+      
+                # Match lines containing compromised count
+                if ($line -match "^Compromised:\s+(\d+)$") {
+                    $compromised = [int]$Matches[1]
+                }
+      
+                # Match lines containing pending count
+                if ($line -match "^Pending:\s+(\d+)$") {
+                    $pending = [int]$Matches[1]
+                }
+      
+                # Match lines containing ignored count
+                if ($line -match "^Ignored:\s+(\d+)$") {
+                    $ignored = [int]$Matches[1]
+                }
+      
+                # Match lines containing skipped count
+                if ($line -match "^Skipped:\s+(\d+)$") {
+                    $skipped = [int]$Matches[1]
+                }
+            }
+      
+            # Output the extracted data (optional)
+            Write-Host "Report Generated: $reportGenerated"
+            Write-Host "Test Cases: $testCases"
+            Write-Host "Passed: $passed"
+            Write-Host "Failed: $failed"
+            Write-Host "Failed with errors: $failedWithErrors"
+            Write-Host "Compromised: $compromised"
+            Write-Host "Pending: $pending"
+            Write-Host "Ignored: $ignored"
+            Write-Host "Skipped: $skipped"

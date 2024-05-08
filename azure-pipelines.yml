@@ -161,6 +161,14 @@ steps:
                   )
               }
           )
+            "potentialAction" : [{
+                  "@type" : "OpenUri",
+                  "name" : "View Test Results",
+                  "targets" : [{
+                          "os" : "default",
+                          "uri" : "$(System.CollectionUri)/SerenityTest/_build/results?buildId=$(Build.BuildId)&view=$(View)&pathAsName=$(PathAsName)&type=$(ArtifactType)"
+                      }]
+                  }]
       }
 
       # Convert the PowerShell object to JSON

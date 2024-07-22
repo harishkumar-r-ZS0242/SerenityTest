@@ -1,33 +1,35 @@
 package StepDefinitions;
 
-import Steps.LoginSteps;
+import Steps.HomePageSteps;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import net.serenitybdd.annotations.Steps;
 
 public class LoginStepDefinitions {
 	@Steps
-	LoginSteps loginSteps;
+	HomePageSteps homePageSteps;
 
-	@Given("Login to the Application")
+	@Given("Launch the Application")
 	public void login_to_the_application() {
-		loginSteps.login();
+		homePageSteps.launchApplication();
 	}
 
-	@Given("Open the Application in chrome")
-	public void open_the_application_in_chrome() {
+	@Given("Enter User credentials")
+	public void enter_user_credentials(DataTable credentials) {
+		homePageSteps.enterLoginCredentials(credentials);
 	}
-
-	@Given("Enter login credentials")
-	public void enter_login_credentials() {
+	@Given("Click Submit Button")
+	public void Click_login_button(){
+		homePageSteps.clickSubmit();
 	}
-
-	@Given("Click Login button")
-	public void click_login_button() {
+	@Then("Verify page title")
+	public void verify_page_title(DataTable title) {
+		homePageSteps.verifyTitle(title);
 	}
-
-	@Then("Verify the user is logged in")
-	public void verify_the_user_is_logged_in() {
+	
+	@Given("Click {string} tab")
+	public void click_tab(String tab) {
+		homePageSteps.clickButton(tab);
 	}
-
 }
